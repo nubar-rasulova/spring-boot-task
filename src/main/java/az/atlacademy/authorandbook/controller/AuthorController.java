@@ -1,11 +1,15 @@
 package az.atlacademy.authorandbook.controller;
+
 import az.atlacademy.authorandbook.dto.AuthorDTO;
 import az.atlacademy.authorandbook.service.AuthorService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
+@Validated
 @RestController
 @RequestMapping("/api/v1/authors")
 public class AuthorController {
@@ -16,7 +20,7 @@ public class AuthorController {
     }
 
     @PostMapping
-    public ResponseEntity<AuthorDTO> createAuthor(@Validated @RequestBody AuthorDTO authorDto) {
+    public ResponseEntity<AuthorDTO> createAuthor(@Valid @RequestBody AuthorDTO authorDto) {
         return ResponseEntity.ok(authorService.save(authorDto));
     }
 
